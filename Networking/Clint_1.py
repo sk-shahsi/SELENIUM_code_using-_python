@@ -4,12 +4,17 @@ HOST_NAME = socket.gethostname()
 PORT = 12345
 s.connect((HOST_NAME, PORT))
 
+# while True:
+#     message = ''
+#     while True:
+#         msg = s.recv(10)
+#         if len(msg) <=0:
+#             break
+#         message += msg.decode('utf-8')
+#         if len(message) >0:
+#          print(message)
 while True:
-    message = ''
-    while True:
-        msg = s.recv(10)
-        if len(msg) <=0:
-            break
-        message += msg.decode('utf-8')
-        if len(message) >0:
-         print(message)
+    message = s.recv(50)
+    print("Server:"+message.decode('utf-8'))
+    message_to_send = input('Clint:')
+    s.send(message_to_send.encode('utf-8'))
